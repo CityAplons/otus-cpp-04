@@ -6,19 +6,7 @@ on:
       - main
       - feature/github_actions
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch name for pushing GitHub pages files'
-        required: true
-        default: "gh-pages"
-      folder:
-        description: 'Folder where Doxygen will generate the HTML build files'
-        required: true
-        default: "docs"
-      config_file:
-        description: 'Path of the Doxygen configuration file'
-        required: true
-        default: "Doxyfile"
+    
 
 jobs:
   generate:
@@ -35,13 +23,11 @@ jobs:
         shell: bash
 
       - name: Generate Doxygen Documentation
-        run: doxygen ${{ github.event.inputs.config_file }}
+        run: doxygen Doxyfile
         shell: bash
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: ${{ github.event.inputs.branch }}
-          folder: ${{ github.event.inputs.config_file }}
+          branch: "gh-pages"
+          folder: "docs"
