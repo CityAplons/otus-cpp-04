@@ -35,7 +35,7 @@ jobs:
         shell: bash
 
       - name: Generate Doxygen Documentation
-        run: doxygen ${{ inputs.config_file }}
+        run: doxygen ${{ github.event.inputs.config_file }}
         shell: bash
 
       - name: Deploy to GitHub Pages
@@ -43,5 +43,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: ${{ inputs.branch }}
-          folder: ${{ inputs.config_file }}
+          branch: ${{ github.event.inputs.branch }}
+          folder: ${{ github.event.inputs.config_file }}
