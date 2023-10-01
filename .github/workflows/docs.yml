@@ -1,0 +1,47 @@
+name: 'C++ Documentation'
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github_actions
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name for pushing GitHub pages files'
+        required: true
+        default: "gh-pages"
+      folder:
+        description: 'Folder where Doxygen will generate the HTML build files'
+        required: true
+        default: "docs/html"
+      config_file:
+        description: 'Path of the Doxygen configuration file'
+        required: true
+        default: "Doxyfile"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: "true"
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz -y
+        shell: bash
+
+      - name: Generate Doxygen Documentation
+        run: doxygen ${{ inputs.config_file }}
+        shell: bash
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: ${{ inputs.branch }}
+          folder: ${{ inputs.config_file }}
