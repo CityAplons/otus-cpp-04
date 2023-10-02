@@ -29,7 +29,7 @@ struct is_container<std::list<Ts...>> : std::true_type { };
 /// @tparam T - generic type
 /// @param value - generic value, if iterable container, this will be called
 /// @param  _ - shadow parameter to go deeper
-/// @return not-applicable, ignore ""
+/// @return no return
 template <typename T, std::enable_if_t<is_container<T>::value, bool> = true>
 auto print_ip(T& value, int) {
   for (auto&& item : value) {
@@ -46,7 +46,13 @@ struct is_tuple : std::false_type { };
 template <typename... Ts> 
 struct is_tuple<std::tuple<Ts...>> : std::true_type { };
 
-// TODO: check for the same type
+/// @brief Check specialization for tuple members type
+/// @tparam T 
+/// @tparam ...Ts 
+template<typename T, typename... Ts>
+constexpr bool all_types_are_same = std::conjunction_v<std::is_same<T, Ts>...>;
+
+/// @brief  Unfolds print_tuple expression
 template<class TupType, size_t... I>
 void print_tuple(const TupType& _tup, std::index_sequence<I...>)
 {
@@ -54,9 +60,13 @@ void print_tuple(const TupType& _tup, std::index_sequence<I...>)
     std::cout << "\n";
 }
 
+/// @brief Print std::tuple with type checking
+/// @tparam ...T 
+/// @param _tup 
 template<class... T>
 void print_tuple (const std::tuple<T...>& _tup)
 {
+    static_assert(all_types_are_same<T...>);
     print_tuple(_tup, std::make_index_sequence<sizeof...(T)>());
 }
 
@@ -64,7 +74,7 @@ void print_tuple (const std::tuple<T...>& _tup)
 /// @tparam T - generic type
 /// @param value - generic value, if std::tuple, this will be called
 /// @param  _ - shadow parameter to go deeper
-/// @return not-applicable, ignore ""
+/// @return no return
 template <typename T, std::enable_if_t<is_tuple<T>::value, bool> = true>
 auto print_ip(T& value, int) {
   print_tuple(value);
