@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['namestring_11',['nameString',['../structProjectInfo.html#af20436337bc4dc5f9233032c6ffc2d51',1,'ProjectInfo']]]
+  ['impl_12',['impl',['../namespaceotus_1_1impl.html',1,'otus']]],
+  ['otus_13',['otus',['../namespaceotus.html',1,'']]]
 ];

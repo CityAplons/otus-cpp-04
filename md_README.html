@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Otus CPP homework 04: cmake-multiplatform-template</title>
+<title>Otus CPP homework 04: Motivation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,23 +64,21 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">cmake-multiplatform-template </div>  </div>
+<div class="title">Motivation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Tiny CMake template repository used for various C/CPP projects</p>
-<blockquote class="doxtable">
-<p>Based on the <a href="https://github.com/CityAplons/webinar-cicd/tree/main">course example</a> and <a href="https://github.com/vdamewood/silikego">some more advanced project</a> </p>
-</blockquote>
+<div class="textblock"><p>Реализовать функцию печати условного IP-адреса. Условность его заключается в том, что количество элементов не обязательно должно быть равно 4- ём или 8-ми, а также каждый элемент не обязательно должен быть числом из диапазона 0..255. От идеи IP-адреса остаётся фактически только вывод элементов через <code>.</code> (символ точки). Функцию нужно реализовать для различных входных параметров путём использования механизма SFINAE. Всего нужно выполнить 3 обязательных и один опциональный вариант функции.</p><ol type="1">
+<li>Адрес может быть представлен в виде произвольного целочисленного типа. Выводить побайтово в беззнаковом виде, начиная со старшего байта, с символом <code>.</code> (символ точки) в качестве разделителя. Выводятся все байты числа.</li>
+<li>Адрес может быть представлен в виде строки. Выводится как есть, вне зависимости от содержимого.</li>
+<li>Адрес может быть представлен в виде контейнеров <code>std::list</code>, <code>std::vector</code>. Выводится полное содержимое контейнера поэлементно и разделяется <code>.</code> (символом точка). Элементы выводятся как есть.</li>
+<li>Опционально адрес может быть представлен в виде <code>std::tuple</code> при условии, что все типы одинаковы. Выводится полное содержимое поэлементно и разделяется <code>.</code> (одним символом точка). Элементы выводятся как есть. В случае, если типы кортежа не одинаковы, должна быть выдана ошибка при компиляции кода.</li>
+</ol>
 <h2><a class="anchor" id="autotoc_md1"></a>
-Motivation</h2>
-<p>The ability to create copy-pasted projects for the Advanced-CPP course and personal pet-repos.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
 Building</h2>
 <div class="fragment"><div class="line">mkdir -p build &amp;&amp; cd build/</div>
 <div class="line">cmake -DCMAKE_BUILD_TYPE=Release ../</div>
 <div class="line">cmake --build .</div>
-</div><!-- fragment --><p>You may add a <code>-DMAKE_PACKAGE=&lt;OFF|ON&gt;</code> to disable or enable packages of a project (it's enabled by default). </p>
-</div></div><!-- contents -->
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
