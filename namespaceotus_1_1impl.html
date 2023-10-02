@@ -69,7 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">otus::impl Namespace Reference</div>  </div>
 </div><!--header-->
@@ -101,9 +102,11 @@ Functions</h2></td></tr>
 <tr class="separator:aa4a7611dc67004523b7eb00e8b3c6112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0523896bd112f9da2a01878d6a37527f"><td class="memTemplParams" colspan="2">template&lt;class TupType , size_t... I&gt; </td></tr>
 <tr class="memitem:a0523896bd112f9da2a01878d6a37527f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a> (const TupType &amp;_tup, std::index_sequence&lt; I... &gt;)</td></tr>
+<tr class="memdesc:a0523896bd112f9da2a01878d6a37527f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unfolds print_tuple expression.  <a href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">More...</a><br /></td></tr>
 <tr class="separator:a0523896bd112f9da2a01878d6a37527f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb537451303fa83c23b7feac27be190f"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
 <tr class="memitem:acb537451303fa83c23b7feac27be190f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">print_tuple</a> (const std::tuple&lt; T... &gt; &amp;_tup)</td></tr>
+<tr class="memdesc:acb537451303fa83c23b7feac27be190f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print std::tuple with type checking.  <a href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">More...</a><br /></td></tr>
 <tr class="separator:acb537451303fa83c23b7feac27be190f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a328fb9bace202bcfe4dad7550698b921"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a328fb9bace202bcfe4dad7550698b921"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a328fb9bace202bcfe4dad7550698b921">print_ip</a> (T &amp;value, int) -&gt; decltype(value.c_str())</td></tr>
@@ -113,6 +116,13 @@ Functions</h2></td></tr>
 <tr class="memitem:af9fdf327e889585d7aa7f36f27f1a619"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#af9fdf327e889585d7aa7f36f27f1a619">print_ip</a> (T &amp;value, long)</td></tr>
 <tr class="memdesc:af9fdf327e889585d7aa7f36f27f1a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">numeric types SFINAE detection. Represent value as bytes and print them with following dot  <a href="namespaceotus_1_1impl.html#af9fdf327e889585d7aa7f36f27f1a619">More...</a><br /></td></tr>
 <tr class="separator:af9fdf327e889585d7aa7f36f27f1a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7f366981d5876dd17d45020e763a1949"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Ts&gt; </td></tr>
+<tr class="memitem:a7f366981d5876dd17d45020e763a1949"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">all_types_are_same</a> = std::conjunction_v&lt;std::is_same&lt;T, Ts&gt;...&gt;</td></tr>
+<tr class="memdesc:a7f366981d5876dd17d45020e763a1949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check specialization for tuple members type.  <a href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">More...</a><br /></td></tr>
+<tr class="separator:a7f366981d5876dd17d45020e763a1949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SFINAE print_ip implementation. </p>
@@ -160,7 +170,7 @@ template&lt;typename T , std::enable_if_t&lt; is_container&lt; T &gt;::value, bo
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>not-applicable, ignore ""</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>no return</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>- generic type </td></tr>
@@ -174,7 +184,7 @@ template&lt;typename T , std::enable_if_t&lt; is_container&lt; T &gt;::value, bo
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>not-applicable, ignore "" </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>no return </dd></dl>
 
 </div>
 </div>
@@ -288,6 +298,21 @@ template&lt;class... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Print std::tuple with type checking. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">...T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_tup</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0523896bd112f9da2a01878d6a37527f"></a>
@@ -317,6 +342,43 @@ template&lt;class TupType , size_t... I&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Unfolds print_tuple expression. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a7f366981d5876dd17d45020e763a1949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f366981d5876dd17d45020e763a1949">&#9670;&nbsp;</a></span>all_types_are_same</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool otus::impl::all_types_are_same = std::conjunction_v&lt;std::is_same&lt;T, Ts&gt;...&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check specialization for tuple members type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+    <tr><td class="paramname">...Ts</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['major_43',['major',['../structProjectInfo.html#a3131872d703b3d1a71d6f6149961caa9',1,'ProjectInfo']]],
-  ['minor_44',['minor',['../structProjectInfo.html#ac1b8f24fec03072d16febb0c1c4ca949',1,'ProjectInfo']]]
+  ['all_5ftypes_5fare_5fsame_44',['all_types_are_same',['../namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949',1,'otus::impl']]]
 ];

@@ -70,7 +70,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">print_ip.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -117,9 +118,11 @@ Functions</h2></td></tr>
 <tr class="separator:aa4a7611dc67004523b7eb00e8b3c6112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0523896bd112f9da2a01878d6a37527f"><td class="memTemplParams" colspan="2">template&lt;class TupType , size_t... I&gt; </td></tr>
 <tr class="memitem:a0523896bd112f9da2a01878d6a37527f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">otus::impl::print_tuple</a> (const TupType &amp;_tup, std::index_sequence&lt; I... &gt;)</td></tr>
+<tr class="memdesc:a0523896bd112f9da2a01878d6a37527f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unfolds print_tuple expression.  <a href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">More...</a><br /></td></tr>
 <tr class="separator:a0523896bd112f9da2a01878d6a37527f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb537451303fa83c23b7feac27be190f"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
 <tr class="memitem:acb537451303fa83c23b7feac27be190f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">otus::impl::print_tuple</a> (const std::tuple&lt; T... &gt; &amp;_tup)</td></tr>
+<tr class="memdesc:acb537451303fa83c23b7feac27be190f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print std::tuple with type checking.  <a href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">More...</a><br /></td></tr>
 <tr class="separator:acb537451303fa83c23b7feac27be190f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a328fb9bace202bcfe4dad7550698b921"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a328fb9bace202bcfe4dad7550698b921"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a328fb9bace202bcfe4dad7550698b921">otus::impl::print_ip</a> (T &amp;value, int) -&gt; decltype(value.c_str())</td></tr>
@@ -133,6 +136,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ae9fbebb411f3a4828607cb9fd656f201"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">otus::print_ip</a> (T &amp;&amp;value)</td></tr>
 <tr class="memdesc:ae9fbebb411f3a4828607cb9fd656f201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common call.  <a href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">More...</a><br /></td></tr>
 <tr class="separator:ae9fbebb411f3a4828607cb9fd656f201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7f366981d5876dd17d45020e763a1949"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Ts&gt; </td></tr>
+<tr class="memitem:a7f366981d5876dd17d45020e763a1949"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">otus::impl::all_types_are_same</a> = std::conjunction_v&lt;std::is_same&lt;T, Ts&gt;...&gt;</td></tr>
+<tr class="memdesc:a7f366981d5876dd17d45020e763a1949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check specialization for tuple members type.  <a href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">More...</a><br /></td></tr>
+<tr class="separator:a7f366981d5876dd17d45020e763a1949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

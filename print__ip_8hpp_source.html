@@ -109,55 +109,59 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Ts&gt; </div>
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structotus_1_1impl_1_1is__tuple_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html">   47</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structotus_1_1impl_1_1is__tuple.html">is_tuple</a>&lt;std::tuple&lt;Ts...&gt;&gt; : std::true_type { };</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// TODO: check for the same type</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class </span>TupType, <span class="keywordtype">size_t</span>... I&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">   51</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(<span class="keyword">const</span> TupType&amp; _tup, std::index_sequence&lt;I...&gt;)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    (..., (std::cout &lt;&lt; (I == 0? <span class="stringliteral">&quot;&quot;</span> : <span class="stringliteral">&quot;.&quot;</span>) &lt;&lt; std::get&lt;I&gt;(_tup)));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span>... T&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a> (<span class="keyword">const</span> std::tuple&lt;T...&gt;&amp; _tup)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(_tup, std::make_index_sequence&lt;<span class="keyword">sizeof</span>...(T)&gt;());</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">   53</a></span>&#160;constexpr <span class="keywordtype">bool</span> <a class="code" href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">all_types_are_same</a> = std::conjunction_v&lt;std::is_same&lt;T, Ts&gt;...&gt;;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class </span>TupType, <span class="keywordtype">size_t</span>... I&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(<span class="keyword">const</span> TupType&amp; _tup, std::index_sequence&lt;I...&gt;)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    (..., (std::cout &lt;&lt; (I == 0? <span class="stringliteral">&quot;&quot;</span> : <span class="stringliteral">&quot;.&quot;</span>) &lt;&lt; std::get&lt;I&gt;(_tup)));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;template &lt;typename T, std::enable_if_t&lt;is_tuple&lt;T&gt;::value, <span class="keywordtype">bool</span>&gt; = <span class="keyword">true</span>&gt;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">int</span>) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(value);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span>... T&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#acb537451303fa83c23b7feac27be190f">   67</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a> (<span class="keyword">const</span> std::tuple&lt;T...&gt;&amp; _tup)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    static_assert(all_types_are_same&lt;T...&gt;);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(_tup, std::make_index_sequence&lt;<span class="keyword">sizeof</span>...(T)&gt;());</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#a328fb9bace202bcfe4dad7550698b921">   79</a></span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">int</span>) -&gt; decltype(value.c_str()) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  std::cout &lt;&lt; value &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#af9fdf327e889585d7aa7f36f27f1a619">   91</a></span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">long</span>) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordtype">size_t</span> bytesAmount = <span class="keyword">sizeof</span>(value);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = bytesAmount; i &gt; 0; --i) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::cout &lt;&lt; unsigned(static_cast&lt;uint8_t&gt;((value &gt;&gt; 8 * (i - 1)) &amp; 0xFF));</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">if</span> (i != 1) {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      std::cout &lt;&lt; <span class="charliteral">&#39;.&#39;</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">  108</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">print_ip</a>(T&amp;&amp; value) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">impl::print_ip</a>(value, <span class="keywordtype">int</span>{});</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;template &lt;typename T, std::enable_if_t&lt;is_tuple&lt;T&gt;::value, <span class="keywordtype">bool</span>&gt; = <span class="keyword">true</span>&gt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">int</span>) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <a class="code" href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">print_tuple</a>(value);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#a328fb9bace202bcfe4dad7550698b921">   89</a></span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">int</span>) -&gt; decltype(value.c_str()) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  std::cout &lt;&lt; value &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="namespaceotus_1_1impl.html#af9fdf327e889585d7aa7f36f27f1a619">  101</a></span>&#160;<span class="keyword">auto</span> <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">print_ip</a>(T&amp; value, <span class="keywordtype">long</span>) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordtype">size_t</span> bytesAmount = <span class="keyword">sizeof</span>(value);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = bytesAmount; i &gt; 0; --i) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::cout &lt;&lt; unsigned(static_cast&lt;uint8_t&gt;((value &gt;&gt; 8 * (i - 1)) &amp; 0xFF));</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (i != 1) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      std::cout &lt;&lt; <span class="charliteral">&#39;.&#39;</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}  <span class="comment">// namespace otus</span></div>
-<div class="ttc" id="anamespaceotus_1_1impl_html_a0523896bd112f9da2a01878d6a37527f"><div class="ttname"><a href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">otus::impl::print_tuple</a></div><div class="ttdeci">void print_tuple(const TupType &amp;_tup, std::index_sequence&lt; I... &gt;)</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:51</div></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">  118</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">print_ip</a>(T&amp;&amp; value) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <a class="code" href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">impl::print_ip</a>(value, <span class="keywordtype">int</span>{});</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}  <span class="comment">// namespace otus</span></div>
+<div class="ttc" id="anamespaceotus_1_1impl_html_a0523896bd112f9da2a01878d6a37527f"><div class="ttname"><a href="namespaceotus_1_1impl.html#a0523896bd112f9da2a01878d6a37527f">otus::impl::print_tuple</a></div><div class="ttdeci">void print_tuple(const TupType &amp;_tup, std::index_sequence&lt; I... &gt;)</div><div class="ttdoc">Unfolds print_tuple expression.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:57</div></div>
+<div class="ttc" id="anamespaceotus_1_1impl_html_a7f366981d5876dd17d45020e763a1949"><div class="ttname"><a href="namespaceotus_1_1impl.html#a7f366981d5876dd17d45020e763a1949">otus::impl::all_types_are_same</a></div><div class="ttdeci">constexpr bool all_types_are_same</div><div class="ttdoc">Check specialization for tuple members type.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:53</div></div>
 <div class="ttc" id="anamespaceotus_1_1impl_html_aa4a7611dc67004523b7eb00e8b3c6112"><div class="ttname"><a href="namespaceotus_1_1impl.html#aa4a7611dc67004523b7eb00e8b3c6112">otus::impl::print_ip</a></div><div class="ttdeci">auto print_ip(T &amp;value, int)</div><div class="ttdoc">container type SFINAE detection. Print it with forrange.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:34</div></div>
 <div class="ttc" id="anamespaceotus_html"><div class="ttname"><a href="namespaceotus.html">otus</a></div><div class="ttdef"><b>Definition:</b> print_ip.hpp:12</div></div>
-<div class="ttc" id="anamespaceotus_html_ae9fbebb411f3a4828607cb9fd656f201"><div class="ttname"><a href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">otus::print_ip</a></div><div class="ttdeci">void print_ip(T &amp;&amp;value)</div><div class="ttdoc">Common call.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:108</div></div>
+<div class="ttc" id="anamespaceotus_html_ae9fbebb411f3a4828607cb9fd656f201"><div class="ttname"><a href="namespaceotus.html#ae9fbebb411f3a4828607cb9fd656f201">otus::print_ip</a></div><div class="ttdeci">void print_ip(T &amp;&amp;value)</div><div class="ttdoc">Common call.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:118</div></div>
 <div class="ttc" id="astructotus_1_1impl_1_1is__container_html"><div class="ttname"><a href="structotus_1_1impl_1_1is__container.html">otus::impl::is_container</a></div><div class="ttdoc">Check specialization for vector and list.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:20</div></div>
 <div class="ttc" id="astructotus_1_1impl_1_1is__tuple_html"><div class="ttname"><a href="structotus_1_1impl_1_1is__tuple.html">otus::impl::is_tuple</a></div><div class="ttdoc">Check specialization for tuple.</div><div class="ttdef"><b>Definition:</b> print_ip.hpp:44</div></div>
 </div><!-- fragment --></div><!-- contents -->

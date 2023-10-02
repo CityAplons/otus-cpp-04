@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['revision_46',['revision',['../structProjectInfo.html#aa1605025ea41823256895120ff538419',1,'ProjectInfo']]]
+  ['namestring_47',['nameString',['../structProjectInfo.html#af20436337bc4dc5f9233032c6ffc2d51',1,'ProjectInfo']]]
 ];
